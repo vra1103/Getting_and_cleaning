@@ -1,0 +1,36 @@
+1. Download, unzip the dataset.
+save the zip file as week4_dataset.zip
+extract the zip file to the folder UCI HAR Dataset 
+
+2. Read the dataset
+features <- features.txt : 561 rows, 2 columns (contains the feature vector from the accelerometer and gyroscope)
+activities <- activity_labels.txt : 6 rows, 2 columns (contains the class labels with their activity name)
+subject_test <- test/subject_test.txt : 2947 rows, 1 column (contains the id of the test subjects being observed)
+X_train <- test/X_test.txt : 2947 rows, 561 columns (contains test set)
+y_train <- test/y_test.txt : 2947 rows, 1 columns (contains test labels)
+subject_train <- test/subject_train.txt : 7352 rows, 1 column (contains the id of the train subjects being observed)
+XMTT <- test/X_train.txt : 7352 rows, 561 columns (contains train set)
+YMTT <- test/y_train.txt : 7352 rows, 1 columns (contains train labels)
+
+3. Merges the training and the test sets to create one dataset.
+Subject (10299 rows, 1 column) is created by merging subject_train and subject_test with rbind()
+Mergedata (10299 rows, 563 column) is created by merging Subject, Y and X with cbind()
+
+4. Extracts only the measurements on the mean and standard deviation for each measurement.
+TidyData (10299 rows, 88 columns) is created by selecting columns with the mean and std meansurement, along with the class label and subject id
+
+5. Uses descriptive activity names to name the activities in the data set
+TidyData$code  replace the Tidycode with its acitivity name Tidy activities
+
+6. Appropriately labels the data set with descriptive variable names
+replace the column name with a more descriptive name
+All Acc -> Accelerometer
+All Gyro -> Gyroscope
+All Mag -> Magnitude
+All f -> Freq
+All t -> Time
+and so on
+
+7. From the data set in step 6, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+FinalData  180 rows, 88 columns) is created by sumarizing TidyDf by taking the means of each variable for each activity and each subject, after groupped by subject and activity.
+FinalData is is exported to FinalData.txt
